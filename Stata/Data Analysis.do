@@ -1,5 +1,5 @@
 ** Prepare raw experimental data **
-import excel "..\Data\Experimental Data.xlsx", firstrow clear
+import delimited "..\Data\Experimental Data.csv", encoding(UTF-8) clear
 run "..\Stata\Prepare Raw Data.do"
 
 ** Section 2 **
@@ -17,6 +17,6 @@ do "..\Stata\Magnitude"
 ** Section 4 **
 do "..\Stata\Power analysis"
 ** Meta Analysis **
-import excel "..\Data\Meta Data.xlsx", firstrow clear
+import delimited "..\Data\Meta Data.csv", encoding(UTF-8) clear
 run "..\Stata\Prepare Meta Data.do"
 do "..\Stata\Meta Analysis.do"
