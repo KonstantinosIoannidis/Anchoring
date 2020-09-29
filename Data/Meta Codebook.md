@@ -22,4 +22,4 @@ This is the codebook for the "Meta Data.xlsx" file.
 | `z_weights` | Weight as inverse of standard error of z_effect |
 | `g_effect` | Hedge's g |
 | `g_se` | Standard error of Hedge's g |
-| `g_weights` | Weight as inverse of standard error of w_effect  |
+| `g_weights` | Weight as inverse of standard error of w_effect |
