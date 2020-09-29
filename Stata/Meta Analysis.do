@@ -12,9 +12,7 @@ order n_m, after(elicitation)
 ** Create Figures 3a and 3b **
 meta set g_effect g_se, studylabel(paper) studysize(n_total) eslabel(Hedge's g)
 meta forestplot if paid == 2 & anchor < 3, subgroup(good elicitation anchor) columnopts(_id, title(Variable)) columnopts(_K, title(#Results)) noohetstats xscale(range(-0.5 1)) xlabel(-0.5 0 0.5 1) name("Figure3a")
-// graph export "forest_info.png", as(png) replace
 meta forestplot if paid==2 & anchor == 3, subgroup(good elicitation) columnopts(_id, title(Variable)) columnopts(_K, title(#Results)) noohetstats noghetstats nogbhomtests crop(-0.5 1) xlabel(-0.5 0 0.5 1)  name("Figure3b")
-// graph export "forest_noinfo.png", as(png) replace
 
 ** Computation of weights for Table 3 **
 * Weights of Good (column 2) *
