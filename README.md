@@ -1,4 +1,4 @@
-# Description
+## Description
 
 This depository includes the data and the Stata code used in Ioannidis K., Offerman T. & Sloof R. (2020). [On the effect of anchoring on valuations when the anchor is transparently uninformative](https://link.springer.com/article/10.1007/s40881-020-00094-1). *Journal of the Economic Science Association*
 
