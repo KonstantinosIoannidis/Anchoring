@@ -32,4 +32,4 @@ The files are stored in two folders: Data, which contains data from the experime
 ## Contributing
 
 **[Konstantinos Ioannidis](http://konstantinosioannidis.com/)** 
-For any questions, please email me here **ioannidis.a.konstantinos@gmail.com**
+For any questions, please email me here **ioannidis.a.konstantinos@gmail.com**.
