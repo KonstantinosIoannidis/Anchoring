@@ -17,6 +17,7 @@ The files are stored in two folders: Data, which contains data from the experime
 1. Data
    * Experimental Data.xlsx (*The raw data from the experiment in Excel format*)
    * Meta Data.xlsx (*The raw data for the meta analysis in Excel format*)
+   * Meta Codebook.md (*Codebook for ```Meta Data.xlsx```*)
 2. Stata
    * Data Analysis.do (*Calls and executes all other files*)
    * Prepare Raw Data.do (*Cleans raw experimental data and prepares it for analysis*)
