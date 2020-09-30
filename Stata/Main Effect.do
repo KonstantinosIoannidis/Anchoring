@@ -15,8 +15,8 @@ label values anchor_group_q4 anchor_groups
 generate anchor_group_q5 = .
 egen p20 = pctile(anchor), p(20)
 egen p80 = pctile(anchor), p(80)
-replace anchor_group_q5=1 if anchor<=p20
-replace anchor_group_q5=0 if anchor>=p80
+replace anchor_group_q5=1 if anchor<p20
+replace anchor_group_q5=0 if anchor>p80
 label values anchor_group_q5 anchor_groups
 
 ** Scatter plot of anchor and WTA (Figure 1) **
