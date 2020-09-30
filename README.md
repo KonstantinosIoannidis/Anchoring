@@ -2,7 +2,7 @@
 
 This depository includes the data and the Stata code used in Ioannidis K., Offerman T. & Sloof R. (2020). [On the effect of anchoring on valuations when the anchor is transparently uninformative](https://link.springer.com/article/10.1007/s40881-020-00094-1). *Journal of the Economic Science Association*
 
-## Abstract
+### Abstract
 
 We test whether anchoring affects people’s elicited valuations for a bottle of wine in individual decision-making and in markets. We anchor subjects by asking them if they are willing to sell a bottle of wine for a transparently uninformative random price. We elicit subjects’ Willingness-To-Accept for the bottle before and after the market. Subjects participate in a double auction market either in a small or a large trading group. The variance in subjects’ Willingness-To-Accept shrinks within trading groups. Our evidence supports the idea that markets have the potential to diminish anchoring effects. However, the market is not needed: our anchoring manipulation failed in a large sample. In a concise meta-analysis, we identify the circumstances under which anchoring effects of preferences can be expected. 
 
@@ -28,6 +28,9 @@ The files are stored in two folders: Data, which contains data from the experime
    * Power Analysis (*Produces results for first paragraph of Section 4*)
    * Prepare Raw Data.do (*Cleans raw meta data and prepares it for analysis*)
    * Meta Analysis.do (*Produces Table 3 and Figure 3*)
+
+### Instructions
+To run the code, you only need to run **Data Analysis.do**.
 
 ## Contributing
 
