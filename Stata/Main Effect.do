@@ -31,13 +31,15 @@ quietly eststo q5: estpost tabstat WTA_initial, by(anchor_group_q5) stat(mean se
 esttab q2 q4 q5 , ///
 addnotes("Standard deviations in parentheses" "p-values refer to Mann-Whitney ranksum tests") /// 
 cells(mean(fmt(2)) semean(par fmt(2))) nonumbers label
-** (p-values in Table 1) **
+
+** Test for anchoring (p-values in Table 1) **
 ** Median split **
 ranksum WTA_initial, by(anchor_group_q2)
 ** Quartile split **
 ranksum WTA_initial, by(anchor_group_q4)
 ** Quintile split **
 ranksum WTA_initial, by(anchor_group_q5)
+
 ** Regression
 regress WTA_initial anchor endowment
 
