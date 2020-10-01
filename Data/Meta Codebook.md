@@ -1,4 +1,4 @@
-This is the codebook for the "Meta Data.xlsx" file.
+This is the codebook for the "Meta Data.csv" file.
 
 | Variable | Description |
 | :---: | :---: |
