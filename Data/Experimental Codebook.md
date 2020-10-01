@@ -1,6 +1,4 @@
-This is the codebook for the "Experimental Data.xlsx" file.
-
-This is the codebook for the "Meta Data.xlsx" file.
+This is the codebook for the "Experimental Data.csv" file.
 
 | Variable | Description |
 | :---: | :---: |
