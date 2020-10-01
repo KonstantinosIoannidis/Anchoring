@@ -15,9 +15,10 @@ The analysis was conducted using ```Stata 16```.
 The files are stored in two folders: Data, which contains data from the experiment and the meta analysis, and Stata, which contains the Stata code to produce every result in the paper.
 
 1. Data
-   * Experimental Data.xlsx (*The raw data from the experiment in Excel format*)
-   * Meta Data.xlsx (*The raw data for the meta analysis in Excel format*)
-   * Meta Codebook.md (*Codebook for ```Meta Data.xlsx```*)
+   * Experimental Data.csv (*The raw data from the experiment in csv format*)
+   * Experimental Codebook.md (*Codebook for ```Experimental Data.csv```*)
+   * Meta Data.csv (*The raw data for the meta analysis in csv format*)
+   * Meta Codebook.md (*Codebook for ```Meta Data.csv```*)
 2. Stata
    * Data Analysis.do (*Calls and executes all other files*)
    * Prepare Raw Data.do (*Cleans raw experimental data and prepares it for analysis*)
