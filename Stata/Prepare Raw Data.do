@@ -126,7 +126,7 @@ drop payoff_1
 drop receive_good_2
 drop payoff_2
 
-** Correct typo **
+** Correct typos **
 replace trade_1 = 0 in 3
 replace price_1 = 0 in 3
 replace endowment = 7.5 if sessionlabel == "1826-16"
