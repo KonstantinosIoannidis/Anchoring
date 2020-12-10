@@ -22,7 +22,7 @@ collapse WTA_final WTA_initial, by (treatment WTA_group)
 insobs 2
 gen aggregate = 1 - treatment
 replace aggregate = 2 if aggregate == .
-label define aggregates 0 "Small" 1 "Large" 2 "Aggegate"
+label define aggregates 0 "Small" 1 "Large" 2 "Aggregate"
 label values aggregate aggregates
 bysort WTA_group: egen WTA_initial_agg_high = mean(WTA_initial) if WTA_group == 0
 bysort WTA_group: egen WTA_initial_agg_low = mean(WTA_initial) if WTA_group == 1
