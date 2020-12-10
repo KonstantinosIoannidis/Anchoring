@@ -17,30 +17,28 @@ gen abs_wta_f = abs(WTA_final - mean_WTA_f)
 signrank abs_wta_f = abs_wta_i
 
 ** Phase I and Phase III WTA (Figure 2) **
-gen agg = 0
-replace agg = 1 if index>105 & index<210
-replace agg = 2 if index>=210
-label define aggs 0 "Small" 1 "Large" 2 "Aggegate"
-label values agg aggs
-generate value_b = 7.84 if WTA_group==0 & agg==0
-replace value_b = 7.98 if WTA_group==0 & agg==2
-replace value_b = 8.12 if WTA_group==0 & agg==1
-replace value_b = 4.25 if WTA_group==1 & agg==0
-replace value_b = 3.88 if WTA_group==1 & agg==2
-replace value_b = 3.53 if WTA_group==1 & agg==1
-generate value_a = 7.06 if WTA_group==0 & agg==0
-replace value_a = 6.75 if WTA_group==0 & agg==2
-replace value_a = 6.46 if WTA_group==0 & agg==1
-replace value_a = 5.01 if WTA_group==1 & agg==0
-replace value_a = 4.50 if WTA_group==1 & agg==2
-replace value_a = 3.99 if WTA_group==1 & agg==1
-graph bar (mean) value_b (mean) value_a, over(agg) name("Figure2") ///
-by(WTA_group, note("")) ytitle(Mean WTA) blabel(total, format(%9.2f)) ///
-yscale(range(0 10)) legend(label(1 "Phase I WTA") label(2 "Phase III WTA"))
+preserve
+collapse WTA_final WTA_initial, by (treatment WTA_group)
+insobs 2
+gen aggregate = 1 - treatment
+replace aggregate = 2 if aggregate == .
+label define aggregates 0 "Small" 1 "Large" 2 "Aggegate"
+label values aggregate aggregates
+bysort WTA_group: egen WTA_initial_agg_high = mean(WTA_initial) if WTA_group == 0
+bysort WTA_group: egen WTA_initial_agg_low = mean(WTA_initial) if WTA_group == 1
+bysort WTA_group: egen WTA_final_agg_high = mean(WTA_final) if WTA_group == 0
+bysort WTA_group: egen WTA_final_agg_low = mean(WTA_final) if WTA_group == 1
+replace WTA_group = 0 if _n == 5
+replace WTA_group = 1 if _n == 6
+replace WTA_initial = WTA_initial_agg_high[_n-4] if _n == 5
+replace WTA_initial = WTA_initial_agg_low[_n-2] if _n == 6
+replace WTA_final = WTA_final_agg_high[_n-4] if _n == 5
+replace WTA_final = WTA_final_agg_low[_n-2] if _n == 6
+graph bar (mean) WTA_initial (mean) WTA_final, over(aggregate) name("Figure2") by(WTA_group, note("")) ytitle(Mean WTA) blabel(total, format(%9.2f)) yscale(range(0 10)) legend(label(1 "Phase I WTA") label(2 "Phase III WTA"))
 gr_edit .note.text = {}
 gr_edit .note.text.Arrpush Note: Aggregate is over market treatments
+restore
 
 ** Drop temporary variables **
-drop value_a value_b agg
-label drop aggs
 drop mean_WTA_i mean_WTA_f
+drop abs_wta_i abs_wta_f
