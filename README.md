@@ -27,7 +27,7 @@ The files are stored in two folders: Data, which contains data from the experime
    * Direction.do (*Produces results of Subsection 3.2 and Figure 2*)
    * Magnitude.do (*Produces Table 2*)
    * Power Analysis (*Produces results for first paragraph of Section 4*)
-   * Prepare Raw Data.do (*Cleans raw meta data and prepares it for analysis*)
+   * Prepare Meta Data.do (*Cleans raw meta data and prepares it for analysis*)
    * Meta Analysis.do (*Produces Table 3 and Figure 3*)
 
 ### Instructions
