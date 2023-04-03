@@ -1,0 +1,18 @@
+{% extends "global/Page.html" %}
+{% load static otree %}
+
+{% block title %}
+    Please enter the following information.
+{% endblock %}
+
+{% block content %}
+
+    {% formfield player.age label="Please indicate your age." %}
+
+    {% formfield player.study label="Please indicate your field of study." %}
+
+    {% formfield player.gender label="Please indicate your gender." %}
+
+    {% next_button %}
+
+{% endblock %}

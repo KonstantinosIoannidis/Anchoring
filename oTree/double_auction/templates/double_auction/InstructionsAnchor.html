@@ -1,0 +1,16 @@
+{% load otree static %}
+
+<div class="card bg-light">
+    <div class="card-body">
+
+        <p><u><center>Instructions</center></u></p>
+
+        <p>If this decision is selected at the end of the experiment, then </p>
+
+            <ol type="A">
+                <li>If you click <b>NO</b>, you keep the {{auctioned_item}}.</li>
+                <li>If you click <b>YES</b>, you get {{player.anchor_value|c}} in return for the {{auctioned_item}}.
+            </ol>
+
+    </div>
+</div>

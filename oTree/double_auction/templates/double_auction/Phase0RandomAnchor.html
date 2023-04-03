@@ -1,0 +1,160 @@
+{% extends "global/Page.html" %}
+{% load static otree %}
+
+{% block title %}
+    <center></center>
+{% endblock %}
+
+{% block content %}
+
+
+<p id="wait_text">
+    For this part of the experiment, you are required to roll a 10-sided die twice and report the outcomes.
+    The outcomes will be converted to a price that you will see in the next page.
+    The price is constructed in the following way:
+    the first roll is the integer (euros) part and the second roll is the decimal part of the price you will see.
+    Please remain seated and the experimenter will come to your room with the die shortly.<br>
+    <button id='wait_button' type="button" class="otree-btn-next btn btn-primary" onclick="Text()">Next</button>
+</p>
+
+<p id="roll_1_text" style="display:none">
+    Submit the outcome of first die roll and click Submit.
+    <input id="roll_1_form" type="text" onkeypress='validate(event)' name="roll_1" style="display:none">
+    <input id='roll_1_button' class="btn  btn-large btn-primary next-button" value="Submit" onclick='Roll_1()' type="button" style="display:none">
+</p>
+
+<p id="roll_2_text" style="display:none">
+    Submit the outcome of second die roll and click Submit.
+    <input id="roll_2_form" type="text" onkeypress='validate(event)' name="roll_2" style="display:none">
+    <input id='roll_2_button' class="btn  btn-large btn-primary next-button" value="Submit" onclick='Roll_2()' type="button" style="display:none">
+</p>
+
+<p id="confirm_text" style="display:none">
+    <input type="hidden" name="anchor_value" id="anchor_value"/>
+    Please confirm that your rolls where <span id="rolls"></span>.
+    <button id='confirm_button' type="button" class="otree-btn-next btn btn-primary" onclick="Confirm()" style="display:none">Confirm</button>
+    If the outcomes were different, please click Resubmit.
+    <button id='resubmit_button' type="button" class="otree-btn-next btn btn-primary" onclick="Reload()" style="display:none">Resubmit</button>
+</p>
+
+<p id="ready" style="display:none">
+    The outcomes of the rolls are registered.
+    The corresponding price is €<span id="outcome"></span>.
+    The experiment will continue shortly after the experimenter leaves the room.
+    Please wait.
+</p>
+
+<button id='proceed_button' class="otree-btn-next btn btn-primary" style="display:none">Proceed</button>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script type="text/javascript">
+    // Disable enter key
+    function stopEnterKey(evt) {
+        var evt = (evt) ? evt : ((event) ? event : null);
+        var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null);
+        if ((evt.keyCode == 13) && (node.type == "text")) { return false; }
+    }
+    document.onkeypress = stopEnterKey;
+
+    function isEmpty(id) {
+        if (document.getElementById(id).value.length <1 ) {
+            alert("No input");
+            return true;
+        }
+        return false;
+    }
+
+    function validate(evt) {
+  var theEvent = evt || window.event;
+
+  // Handle paste
+  if (theEvent.type === 'paste') {
+      key = event.clipboardData.getData('text/plain');
+  } else {
+  // Handle key press
+      var key = theEvent.keyCode || theEvent.which;
+      key = String.fromCharCode(key);
+  }
+  var regex = /[0-9]/;
+  if( !regex.test(key) ) {
+    theEvent.returnValue = false;
+    if(theEvent.preventDefault) theEvent.preventDefault();
+  }
+}
+
+    var roll_1;
+    var roll_2;
+    var outcome;
+
+    function Text() {
+    document.getElementById('wait_text').style.display = 'none';
+    document.getElementById('wait_button').style.display = 'none';
+    document.getElementById('roll_1_text').style.display = 'block';
+    document.getElementById('roll_1_form').style.display = 'block';
+    document.getElementById('roll_1_button').style.display = 'block';
+    document.getElementById('proceed_button').style.display = 'none';
+    }
+
+    function Roll_1() {
+    if (!isEmpty('roll_1_form')){
+        if (document.getElementById('roll_1_form').value > 10) {
+            alert("Invalid entry, please input only one integer.")
+            Reload();
+        } else {
+            document.getElementById('roll_1_text').style.display = 'none';
+            document.getElementById('roll_1_form').style.display = 'none';
+            document.getElementById('roll_1_button').style.display = 'none';
+            document.getElementById('roll_2_text').style.display = 'block';
+            document.getElementById('roll_2_form').style.display = 'block';
+            document.getElementById('roll_2_button').style.display = 'block';
+            }
+        }
+    }
+
+    function Roll_2() {
+    if (!isEmpty('roll_2_form')){
+        if (document.getElementById('roll_2_form').value > 10) {
+            alert("Invalid entry, please check the values and resubmit the form.")
+            Reload();
+        } else {
+            roll_1 = document.getElementById('roll_1_form').value;
+            roll_2 = document.getElementById('roll_2_form').value;
+            document.getElementById("rolls").innerHTML = roll_1  + ' and ' + roll_2;
+            document.getElementById('roll_2_text').style.display = 'none';
+            document.getElementById('roll_2_form').style.display = 'none';
+            document.getElementById('roll_2_button').style.display = 'none';
+            document.getElementById('confirm_text').style.display = 'block';
+            document.getElementById('confirm_button').style.display = 'block';
+            document.getElementById('resubmit_button').style.display = 'block';
+            }
+        }
+    }
+
+    function Reload() {
+        window.location.reload(false);
+    }
+
+    function Confirm() {
+    outcome = (roll_1.toString() + roll_2.toString())/10;
+    document.getElementById('anchor_value').value = outcome;
+    document.getElementById("outcome").innerHTML = outcome;
+    if (outcome < 10) {
+        document.getElementById('confirm_text').style.display = 'none';
+        document.getElementById('confirm_button').style.display = 'none';
+        document.getElementById('ready').style.display = 'block';
+        setTimeout(function () {
+        document.getElementById('proceed_button').style.display = 'block';
+        }, 20000);
+    } else {
+        alert("Invalid entry, please check the values and resubmit the form.")
+        Reload();
+    }
+
+    }
+</script>
+
+{% endblock %}

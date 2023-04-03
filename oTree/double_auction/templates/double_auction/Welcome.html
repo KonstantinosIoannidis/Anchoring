@@ -1,0 +1,61 @@
+{% extends "global/Page.html" %}
+{% load static otree %}
+
+{% block title %}
+    <center>Welcome!</center>
+{% endblock %}
+
+{% block styles %}
+    <style>
+        p {
+        text-align: justify
+        }
+     </style>
+{% endblock %}
+
+{% block content %}
+
+<p>
+    Welcome to this experiment.
+    Please read the following instructions carefully.
+    We ask that you do not communicate with other participants during the experiment.
+    The use of mobile phones is not allowed during this experiment.
+    If you have any questions, or need assistance of any kind, at any time, an experimenter will assist you privately.
+    The data collected through this experiment does not include your name or any other information that would allow your identification.
+    All of the data you provide during the experiment cannot be traced back to you.
+</p>
+
+<p>
+    Your earnings in today’s session will consist of money and/or a {{auctioned_item}}.
+    You will start the experiment with a capital of {{participation_fee|c}}.
+    Besides this starting capital, your earnings will depend on your own decisions and may depend on other participants' decisions.
+</p>
+
+<p>
+    The {{auctioned_item}} is {{wine_type}}. The {{auctioned_item}} is <b>different</b> in every session of this experiment.
+    <img src="{% static 'double_auction/wine.jpg' %}"/>
+</p>
+
+<p>
+    In this experiment you will make {{num_decisions}} decisions in total.
+</p>
+
+<p>
+    At the end of the experiment, one of your {{num_decisions}} decisions will be selected at random.
+    Only this decision will determine your earnings (possibly in combination with the decisions of other participants).
+    Your earnings for this decision will be added to your starting capital of {{participation_fee|c}}.
+    You will privately receive your earnings at the end of the experiment.
+</p>
+
+<p>
+    For each decision you will receive some instructions.
+    You will only receive the instructions of a subsequent decision if a previous decision is completely finished.
+</p>
+
+<p>
+    Thank you for your participation.
+</p>
+
+{% next_button %}
+
+{% endblock %}

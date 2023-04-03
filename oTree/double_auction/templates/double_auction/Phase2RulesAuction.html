@@ -1,0 +1,193 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+{% load static otree %}
+
+{% block title %}
+    <center>Market rules and control questions</center>
+{% endblock %}
+
+
+{% block styles %}
+
+<style>
+    .column {
+        width: 50%;
+        padding: 10px;
+    }
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+    p {
+        text-align: justify
+    }
+    h4, {
+        text-align: center
+    }
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="column">
+
+        <h4>Buyers</h4>
+        <p>
+            Buyers are asked to submit the price they are willing to pay for the
+            {% if treatment_control == True %}
+                {{control_item}}.
+            {% else %}
+                {{auctioned_item}}.
+            {% endif %}
+            Offers submitted by the buyers are called <b>Bids</b>.
+            Buyers can <i>increase</i> their bid multiple times, but not decrease (or withdraw) their current bid.
+        </p>
+        <h4>Sellers</h4>
+        <p>
+            Sellers are asked to submit the price they are willing to accept for the
+            {% if treatment_control == True %}
+                {{control_item}}.
+            {% else %}
+                {{auctioned_item}}.
+            {% endif %}
+            Offers submitted by sellers are called <b>Asks</b>.
+            Sellers can decrease their ask multiple times, but not increase (or withdraw) their current ask.
+        </p>
+        <h4>Trades</h4>
+            A trade occurs automatically whenever any of these two rules are satisfied.
+            <ul>
+            <li>When a buyer submits a bid that is higher than or equal to the lowest ask of the sellers in the <b>Order Book</b>,
+                this buyer buys from the seller with the lowest ask and the corresponding ask is the transaction price.</li>
+            <li>When a seller submits an ask that is lower than or equal to the highest bid of the buyers in the <b>Order Book</b>,
+                this seller sells to the buyer with the highest bid and the corresponding bid is the transaction price.</li>
+            </ul>
+        <p>
+        </p>
+        <h4>Earnings</h4>
+            If a trade occurs, the seller receives the transaction price,
+            while the buyer receives the bottle of wine and the transaction price is subtracted from his/her endowment.
+            If a seller does not trade, the seller keeps the bottle of wine.
+            If a buyer does not trade, the buyer keeps his/her endowment.
+        <p>
+        </p>
+        Please answer the questions on the right to make sure you fully understand the rules of the market.
+        <p>
+    </div>
+
+    <div class="column">
+<ul>
+    <li>
+        You are a buyer.
+        Your bid is the second highest bid.
+        You increase your bid and become the highest bidder.
+        Your current bid is lower than the lowest ask.
+        <p><b>Does this action result in a trade for you? And if yes, at which price?</b></p>
+        <form>
+            <input type='radio' name="buyer_no" value="Yes_buyer"> Yes, for a price equal to buyer's bid<br>
+            <input type='radio' name="buyer_no" value="Yes_seller"> Yes, for a price equal to the seller's ask<br>
+            <input type='radio' name="buyer_no" value="No"> No<br>
+        </form>
+    </li>
+    <br>
+    <li>
+        You are a seller.
+        You want to submit an ask higher than your current ask.
+        <p><b>Is this ask allowed?</b></p>
+        <form>
+            <input type="radio" name="seller_ask_no" value="Yes"> Yes<br>
+            <input type="radio" name="seller_ask_no" value="No"> No<br>
+        </form>
+    </li>
+    <br>
+    <li>
+        You are a seller.
+        Your ask is the lowest ask.
+        Your current ask is higher than the highest bid.
+        You decrease your ask below the highest bid.
+        <p><b>Does this action result in a trade for you? And if yes, at which price?</b></p>
+        <form>
+            <input type="radio" name="seller_yes" value="Yes_buyer"> Yes, at a price equal to buyer's bid<br>
+            <input type="radio" name="seller_yes" value="Yes_seller"> Yes, at a price equal to the seller's ask<br>
+            <input type="radio" name="seller_yes" value="No"> No<br>
+        </form>
+    </li>
+    <br>
+    <li>
+        You are a buyer.
+        Your bid is the highest bid.
+        Your bid is lower than the lowest ask.
+        A seller decreases his/her ask below your bid.
+        <p><b>Does this action result in a trade for you? And if yes, at which price?</b></p>
+        <form>
+            <input type="radio" name="buyer_yes" value="Yes_buyer"> Yes, at a price equal to buyer's bid<br>
+            <input type="radio" name="buyer_yes" value="Yes_seller"> Yes, at a price equal to the seller's ask<br>
+            <input type="radio" name="buyer_yes" value="No"> No<br>
+        </form>
+    </li>
+    <br>
+    <li>
+        You are a seller.
+        Your ask is the second lowest ask.
+        A buyer increases his/her bid above your ask.
+        <p><b>Does this action result in a trade for you? And if yes, at which price?</b></p>
+        <form>
+            <input type='radio' name="seller_no" value="Yes_buyer"> Yes, for a price equal to buyer's bid<br>
+            <input type='radio' name="seller_no" value="Yes_seller"> Yes, for a price equal to the seller's ask<br>
+            <input type="radio" name="seller_no" value="No"> No<br>
+        </form>
+    </li>
+    <br>
+    <li>
+        You are a buyer.
+        You want to submit a bid higher than your current bid.
+        <p><b>Is this bid allowed?</b></p>
+        <form>
+            <input type="radio" name="buyer_bid_yes" value="Yes"> Yes<br>
+            <input type="radio" name="buyer_bid_yes" value="No"> No<br>
+        </form>
+    </li>
+</ul>
+
+<p>Click the "Check" button below to check your answers. You can only proceed to the next page if you have answered all questions correctly.</p>
+
+<button id="check" type="button" class="otree-btn-next btn btn-primary" onclick="Check()">Check</button>
+
+<p id="message"></p>
+
+<button id='next' class="otree-btn-next btn btn-primary" style="visibility:hidden" >Next</button>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script>
+function Check() {
+    var buyer_no = document.querySelector('input[name="buyer_no"]:checked').value;
+    var seller_yes = document.querySelector('input[name="seller_yes"]:checked').value;
+    var buyer_yes = document.querySelector('input[name="buyer_yes"]:checked').value;
+    var seller_no = document.querySelector('input[name="seller_no"]:checked').value;
+    var seller_ask_no = document.querySelector('input[name="seller_ask_no"]:checked').value;
+    var buyer_bid_yes = document.querySelector('input[name="buyer_bid_yes"]:checked').value;
+
+    if ((buyer_no != 'No') || (seller_yes != 'Yes_buyer') || (buyer_yes != 'Yes_buyer') || (seller_no != 'No') || (seller_ask_no != 'No') || (buyer_bid_yes != 'Yes') )
+        { text = 'At least one answer is wrong!'; }
+    else {
+        text = 'All answers are correct!';
+    }
+
+    if (text == 'All answers are correct!') {
+        document.getElementById('next').style.visibility = 'visible'; }
+    else {
+        document.getElementById('next').style.visibility = 'hidden';
+    }
+
+    document.getElementById('message').innerHTML = text;
+}
+</script>
+
+{% endblock %}

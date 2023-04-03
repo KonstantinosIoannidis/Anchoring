@@ -1,0 +1,84 @@
+{% extends "global/Page.html" %}
+{% load static otree %}
+
+{% block title %}
+    <center>Market Instructions</center>
+{% endblock %}
+
+{% block styles %}
+    <style>
+        p {
+        text-align: justify
+        }
+        h4, {
+        text-align: center
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+
+<p>
+    You will now participate in a market running for {{repetitions}} periods.
+    In this market, every participant is a trader.
+    {% if treatment_control == True %}
+    The item for trade is a {{control_item}}.
+    {% else %}
+    The item for trade is the same {{auctioned_item}}.
+    {% endif %}
+    The duration of each period of the market is {{auction_time}} seconds.
+</p>
+<h4>Roles</h4>
+<p>
+    In the first period of the market, every participant is assigned to the role of either a buyer or a seller.
+    {% if group.group_size == 2 %}
+        There is 1 buyer and 1 seller in the market.
+    {% else %}
+        There are {{num_buyers}} buyers and {{num_sellers}} sellers in the market.
+    {% endif %}
+    In the second period of the market, all participants will change role.
+</p>
+<h4>Buyers</h4>
+<p>
+    Each buyer is endowed with an amount equal to the price of the
+    {% if treatment_control == True %}
+        {{control_item}}
+    {% else %}
+        {{auctioned_item}}
+    {% endif %}
+    that we paid in the store.
+    The size of this amount will be revealed to you only if it affects your payoffs.
+</p>
+<h4>Sellers</h4>
+<p>
+    Each seller is endowed with a
+    {% if treatment_control == True %}
+        {{control_item}}.
+    {% else %}
+        {{auctioned_item}}.
+    {% endif %}
+</p>
+<h4>Offers</h4>
+<p>
+    All the Bids and Asks will automatically be recorded in the <b>Order Book</b>, which is visible to
+    {% if group.group_size == 2 %}
+        both
+    {% else %}
+        all
+    {% endif %}
+    participants in the market.
+</p>
+<h4>Trades</h4>
+    When a trade occurs, it gets automatically recorded in the <b>Trade Book</b>, which is visible to everyone.
+    {% if group.group_size != 2 %}
+        The buyer and the seller that traded will receive a message informing them about the trade as well.
+        They can no longer submit offers, but they continue to see the live-updated offer book and trade book.
+    {% endif %}
+<h4>Rules</h4>
+<p>
+    The rules of the market are presented in the next page.
+</p>
+
+{% next_button %}
+
+{% endblock %}

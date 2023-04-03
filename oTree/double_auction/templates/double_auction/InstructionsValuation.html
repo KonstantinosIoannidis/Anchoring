@@ -1,0 +1,28 @@
+{% load otree static %}
+
+<div class="card bg-light">
+    <div class="card-body">
+
+        <p><u><center>Instructions</center></u></p>
+
+        <p>If this decision is selected at the end of the experiment,
+            a random price will be drawn between €0.00 and
+            what the experimenter estimates to be the maximum price any buyer would be willing to pay.
+            Then one of the following will happen:
+        </p>
+
+                <ol type="a">
+                <li>If the random price is smaller than the price you reported,
+                    then you keep the {{auctioned_item}}.</li>
+                <li>If the random price is larger or equal to the price you reported,
+                    then the experimenter will buy the {{auctioned_item}} from you and you will receive the random price.</li>
+                </ol>
+
+        <p><b>You will not receive the price you reported. Instead you may receive the random price drawn.</b>
+            The reported price has no impact on the random price as the price was drawn before the experiment started.
+        </p>
+
+        <p>It is in your best interest to report a price that equals your true valuation for the {{auctioned_item}}.</p>
+    </div>
+
+</div>
