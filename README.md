@@ -29,6 +29,7 @@ The files are stored in two folders: Data, which contains data from the experime
    * Power Analysis (*Produces results for first paragraph of Section 4*)
    * Prepare Meta Data.do (*Cleans raw meta data and prepares it for analysis*)
    * Meta Analysis.do (*Produces Table 3 and Figure 3*)
+3. oTree (experimental software)
 
 ### Instructions
 To run the code, you only need to run **Data Analysis.do**.
