@@ -1,0 +1,3 @@
+otree>=2.0.29
+numpy
+otree_custom_export
