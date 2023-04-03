@@ -12,7 +12,7 @@ The analysis was conducted using ```Stata 16```.
 
 ### Files
 
-The files are stored in two folders: Data, which contains data from the experiment and the meta analysis, and Stata, which contains the Stata code to produce every result in the paper.
+The files are stored in three folders: Data, which contains data from the experiment and the meta analysis, Stata, which contains the Stata code to produce every result in the paper, and oTree, which contains the experimental software.
 
 1. Data
    * Experimental Data.csv (*The raw data from the experiment in csv format*)
@@ -29,7 +29,7 @@ The files are stored in two folders: Data, which contains data from the experime
    * Power Analysis (*Produces results for first paragraph of Section 4*)
    * Prepare Meta Data.do (*Cleans raw meta data and prepares it for analysis*)
    * Meta Analysis.do (*Produces Table 3 and Figure 3*)
-3. oTree (experimental software)
+3. oTree
 
 ### Instructions
 To run the code, you only need to run **Data Analysis.do**.
