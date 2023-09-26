@@ -21,8 +21,8 @@ label values anchor_group_q5 anchor_groups
 
 ** Scatter plot of anchor and WTA (Figure 1) **
 twoway (scatter WTA_initial anchor) (lfit WTA_initial anchor), ///
-ytitle("Phase I WTA (in €)") xtitle("Anchor drawn (in €)") ///
-legend( label(2 "Linear fit")) name("Figure1")
+        ytitle("Phase I WTA (in €)") xtitle("Anchor drawn (in €)") ///
+        legend( label(2 "Linear fit")) name("Figure1")
 gr_edit style.editstyle boxstyle(shadestyle(color(white))) editcopy
 gr_edit style.editstyle boxstyle(linestyle(color(white))) editcopy
 
