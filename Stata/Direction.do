@@ -34,13 +34,13 @@ replace WTA_initial = WTA_initial_agg_high[_n-4] if _n == 5
 replace WTA_initial = WTA_initial_agg_low[_n-2] if _n == 6
 replace WTA_final = WTA_final_agg_high[_n-4] if _n == 5
 replace WTA_final = WTA_final_agg_low[_n-2] if _n == 6
-graph bar (mean) WTA_initial (mean) WTA_final, over(aggregate) name("Figure2") by(WTA_group, note("")) ytitle(Mean WTA) blabel(total, format(%9.2f)) yscale(range(0 10)) legend(label(1 "Phase I WTA") label(2 "Phase III WTA"))
-gr_edit .plotregion1.subtitle[1].style.editstyle fillcolor(white) editcopy
-gr_edit .plotregion1.subtitle[1].style.editstyle linestyle(color(white)) editcopy
-gr_edit .style.editstyle boxstyle(shadestyle(color(white))) editcopy
+graph bar (mean) WTA_initial (mean) WTA_final, over(aggregate) name("Figure2") by(WTA_group, note("")) ytitle(Mean WTA) blabel(total, format(%9.2f)) ylabel(0(2)10, nogrid) legend(label(1 "Phase I WTA") label(2 "Phase III WTA"))
+gr_edit plotregion1.subtitle[1].style.editstyle fillcolor(white) editcopy
+gr_edit plotregion1.subtitle[1].style.editstyle linestyle(color(white)) editcopy
+gr_edit style.editstyle boxstyle(shadestyle(color(white))) editcopy
 gr_edit style.editstyle boxstyle(linestyle(color(white))) editcopy
-gr_edit .note.text = {}
-gr_edit .note.text.Arrpush Note: Aggregate is over market treatments
+gr_edit note.text = {}
+gr_edit note.text.Arrpush Note: Aggregate is over market treatments
 restore
 
 ** Drop temporary variables **
