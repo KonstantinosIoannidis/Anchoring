@@ -23,6 +23,8 @@ label values anchor_group_q5 anchor_groups
 twoway (scatter WTA_initial anchor) (lfit WTA_initial anchor), ///
 ytitle("Phase I WTA (in €)") xtitle("Anchor drawn (in €)") ///
 legend( label(2 "Linear fit")) name("Figure1")
+gr_edit .style.editstyle boxstyle(shadestyle(color(white))) editcopy
+gr_edit style.editstyle boxstyle(linestyle(color(white))) editcopy
 
 ** Anchoring table (Table 1) **
 quietly eststo q2: estpost tabstat WTA_initial, by(anchor_group_q2) stat(mean semean n) columns(statistics) nototal
